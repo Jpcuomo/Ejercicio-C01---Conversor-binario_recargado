@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_C01___Conversor_binario_recargado
 {
-    internal class Conversor
+    public class Conversor
     {
         /// <summary>
         /// Convierte a un número en base 10 a su equivalente en base 2
         /// </summary>
         /// <param name="numeroEntero"></param>
         /// <returns>String formado por dígitos binarios</returns>
-        internal static string ConvertirDecimalABinario(int numeroEntero)
+        public static string ConvertirDecimalABinario(int numeroEntero)
         {
             string binario = "";
             int resto;
@@ -35,7 +35,7 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// </summary>
         /// <param name="numeroEntero"></param>
         /// <returns>Entero en base 10</returns>
-        internal static int ConvertirBinarioADecimal(int numeroEntero)
+        public static int ConvertirBinarioADecimal(int numeroEntero)
         {
             string numeroString = numeroEntero.ToString();
             int enteroConvertido = 0;
