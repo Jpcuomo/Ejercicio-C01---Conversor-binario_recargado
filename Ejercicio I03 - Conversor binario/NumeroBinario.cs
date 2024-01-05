@@ -21,30 +21,45 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         }
 
 
-        // Conversor implicito de NumeroBinario a string
-        public static implicit operator string(NumeroBinario nb)
+        //public override string ToString()
+        //{
+        //    return Numero;
+        //}
+
+
+        // Conversor implicito de string a NumeroBinario
+        public static implicit operator NumeroBinario(string numBinario)
         {
-            return nb.Numero;
+            return new NumeroBinario(numBinario);
+        }
+
+        public static explicit operator string(NumeroBinario nb)
+        {
+            return nb.Numero.ToString();
+        }
+
+        public static explicit operator NumeroBinario(NumeroDecimal nd)
+        {
+            return new NumeroBinario(Conversor.DecimalABinario(nd.Numero));
         }
 
 
         // Sobrecarga de operador + y - entre NumeroBinario y NumeroDecimal
         public static string operator +(NumeroBinario nb, NumeroDecimal nd)
         {
-            int numDecimal = Conversor.ConvertirBinarioADecimal(nb.Numero) + (int)nd.Numero;
-            return Conversor.ConvertirDecimalABinario(numDecimal);
+            return Conversor.DecimalABinario(((NumeroDecimal)nb).Numero + nd.Numero);
         }
         public static string operator -(NumeroBinario nb, NumeroDecimal nd)
         {
-            int numDecimal = Math.Abs(Conversor.ConvertirBinarioADecimal(nb.Numero) - (int)nd.Numero);
-            return Conversor.ConvertirDecimalABinario(numDecimal);
+            double numDecimal = ((NumeroDecimal)nb).Numero - nd.Numero;
+            return Conversor.DecimalABinario(numDecimal);
         }
 
 
         // Sobrecarga de operador == y != entre NumeroBinario y NumeroDecimal
         public static bool operator ==(NumeroBinario nb, NumeroDecimal nd)
         {
-            return nb.Numero == Conversor.ConvertirDecimalABinario((int)nd.Numero);
+            return nb.Numero == ((NumeroBinario)nd).Numero;
         }
         public static bool operator !=(NumeroBinario nb, NumeroDecimal nd)
         {

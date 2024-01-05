@@ -12,7 +12,7 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// Valida que el número ingresado sea un entero mayor o igual a cero
         /// </summary>
         /// <returns>Número entero >= 0</returns>
-        internal static int ValidadorEnteros()
+        internal static double ValidadorDecimal()
         {
             while (true)
             {
@@ -20,14 +20,14 @@ namespace Ejercicio_C01___Conversor_binario_recargado
                 string numeroString = Console.ReadLine();   
                 try
                 {
-                    int numeroEntero = int.Parse(numeroString);
-                    if (numeroEntero >= 0 && numeroEntero <= int.MaxValue)
+                    double numeroEntero = double.Parse(numeroString);
+                    if (numeroEntero >= 0 && numeroEntero <= double.MaxValue)
                     {
                         return numeroEntero;
                     }
                     else
                     {
-                        Console.WriteLine($"Debes ingresar un número entero entre 0 y {int.MaxValue}");
+                        Console.WriteLine($"Debes ingresar un número entero entre 0 y {double.MaxValue}");
                     }
                 }
                 catch(FormatException e)
@@ -37,7 +37,7 @@ namespace Ejercicio_C01___Conversor_binario_recargado
                 }
                 catch (OverflowException)
                 {
-                    Console.WriteLine($"Debes ingresar un número entero entre 0 y {int.MaxValue}");
+                    Console.WriteLine($"Debes ingresar un número entero entre 0 y {double.MaxValue}");
                 }
             }
         }
@@ -55,35 +55,29 @@ namespace Ejercicio_C01___Conversor_binario_recargado
                 string binarioString = Console.ReadLine();
                 bool flagDigitoBinario = true;
 
-                for (int i = binarioString.Length - 1; i >= 0; i--)
+                if (!string.IsNullOrEmpty(binarioString))
                 {
-                    char digito = binarioString[i];
-                    if (digito != '0' && digito != '1')
+                    for (int i = binarioString.Length - 1; i >= 0; i--)
                     {
-                        flagDigitoBinario = false;
-                        Console.WriteLine("Solo puedes ingresar dígitos binarios");
-                        break;
+                        char digito = binarioString[i];
+                        if (digito != '0' && digito != '1')
+                        {
+                            flagDigitoBinario = false;
+                            Console.WriteLine("Solo puedes ingresar dígitos binarios");
+                            break;
+                        }
                     }
+                }
+                else
+                {
+                    flagDigitoBinario = false;
+                    Console.WriteLine("El campo no puede estar vacío. Ingresa un número en formato binario");
                 }
 
                 if (flagDigitoBinario)
                 {
                     return binarioString;
                 }
-                //    try
-                //    {
-                //        int valorDecimal = int.Parse(binarioString);
-                //        return valorDecimal;
-                //    }
-                //    catch (FormatException)
-                //    {
-                //        Console.WriteLine("Solo puedes ingresar dígitos binarios");
-                //    }
-                //    catch(OverflowException)
-                //    {
-                //        Console.WriteLine("El número ingresado es demasiado grande");
-                //    }
-                //}
             }
         }
     }

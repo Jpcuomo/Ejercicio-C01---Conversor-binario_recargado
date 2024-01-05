@@ -13,18 +13,28 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// </summary>
         /// <param name="numeroEntero"></param>
         /// <returns>String formado por dígitos binarios</returns>
-        public static string ConvertirDecimalABinario(int numeroEntero)
+        public static string DecimalABinario(double numeroEntero)
         {
-            string binario = "";
-            int resto;
-            do
+            if (numeroEntero == 0)
             {
-                int cociente = numeroEntero / 2;
-                resto = numeroEntero % 2;
-                numeroEntero = cociente;
-                binario = resto.ToString() + binario;
+                return "0";
+            }
 
-            } while (numeroEntero > 0);
+            string binario = "";
+            int parteEntera = Math.Abs((int)numeroEntero);
+            int resto;
+
+            while (parteEntera != 0)
+            {
+                resto = parteEntera % 2;
+                parteEntera = parteEntera / 2;
+                binario = resto.ToString() + binario;
+            }
+
+            if(numeroEntero < 0)
+            {
+                binario = "-" +  binario;
+            }
 
             return binario;
         }
@@ -35,20 +45,30 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// </summary>
         /// <param name="numeroEntero"></param>
         /// <returns>Entero en base 10</returns>
-        public static int ConvertirBinarioADecimal(string numeroString)
+        public static double BinarioADecimal(string numeroString)
         {
-            //string numeroString = numeroEntero.ToString();
-            int enteroConvertido = 0;
-            int exponente = 0;
+            double enteroConvertido = 0;
+            double exponente = 0;
+            double signo;
+
+            if (numeroString[0] == '-')
+            {
+                numeroString = numeroString.Substring(1);
+                signo = -1;
+            }
+            else
+            {
+                signo = 1;
+            }
 
             for (int i = numeroString.Length - 1; i >= 0; i--)
             {
                 char digitoChar = numeroString[i];
-                int digito = int.Parse(digitoChar.ToString());
-                enteroConvertido += digito * (int)Math.Pow(2, exponente);
+                double digito = double.Parse(digitoChar.ToString());
+                enteroConvertido += digito * (double)Math.Pow(2, exponente);
                 exponente++;
             }
-            return enteroConvertido;
+            return enteroConvertido * signo;
         }
     }
 }
