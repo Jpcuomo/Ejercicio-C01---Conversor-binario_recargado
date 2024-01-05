@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_C01___Conversor_binario_recargado
 {
-    internal class NumeroDecimal
+    public class NumeroDecimal
     {
         private double _numero;
 
@@ -18,19 +18,35 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         public double Numero
         {
             get { return _numero; }
-            set { _numero = value; }
         }
 
 
         // Conversor implicito de NumeroDecimal a double
         public static implicit operator double(NumeroDecimal nd)
         {
-            return (double)nd.Numero;
+            return nd.Numero;
         }
 
-        public static explicit operator int(NumeroDecimal nb)
+
+        // Sobrecarga de operador + y - entre NumeroBinario y NumeroDecimal
+        public static double operator +(NumeroDecimal nd, NumeroBinario nb)
         {
-            return (int)nb.Numero;
+            return nd.Numero + Conversor.ConvertirBinarioADecimal(nb.Numero);
+        }
+        public static double operator -(NumeroDecimal nd, NumeroBinario nb)
+        {
+            return Math.Abs(nd.Numero - Conversor.ConvertirBinarioADecimal(nb.Numero));
+        }
+
+
+        // Sobrecarga de operador == y != entre NumeroBinario y NumeroDecimal
+        public static bool operator ==(NumeroDecimal nd, NumeroBinario nb)
+        {
+            return nd.Numero == Conversor.ConvertirBinarioADecimal(nb.Numero);
+        }
+        public static bool operator !=(NumeroDecimal nd, NumeroBinario nb)
+        {
+            return !(nd == nb);
         }
     }
 }

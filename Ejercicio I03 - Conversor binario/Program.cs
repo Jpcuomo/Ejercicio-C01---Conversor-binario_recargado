@@ -6,7 +6,7 @@
         {
             Console.Title = "Conversor de binarios/ decimales";
 
-            int valorBinario = Validador.ValidadorBinarios();
+            string valorBinario = Validador.ValidadorBinarios();
             int numeroDecimal = Conversor.ConvertirBinarioADecimal(valorBinario);
             Console.WriteLine($"Decimal: {numeroDecimal}");
 
@@ -15,6 +15,8 @@
             int valorDecimal = Validador.ValidadorEnteros();
             string numeroBinario = Conversor.ConvertirDecimalABinario(valorDecimal);
             Console.WriteLine($"Binario: {numeroBinario}");
+
+            NumeroDecimal nd = new NumeroDecimal(5);
         }   
     }
 }

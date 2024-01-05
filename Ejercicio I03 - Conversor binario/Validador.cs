@@ -47,7 +47,7 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// Valida que el número ingresado contenga solo números binarios
         /// </summary>
         /// <returns>Número entero con dígitos binarios</returns>
-        internal static int ValidadorBinarios()
+        internal static string ValidadorBinarios()
         {
             while (true)
             {
@@ -68,20 +68,22 @@ namespace Ejercicio_C01___Conversor_binario_recargado
 
                 if (flagDigitoBinario)
                 {
-                    try
-                    {
-                        int valorDecimal = int.Parse(binarioString);
-                        return valorDecimal;
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Solo puedes ingresar dígitos binarios");
-                    }
-                    catch(OverflowException)
-                    {
-                        Console.WriteLine("El número ingresado es demasiado grande");
-                    }
+                    return binarioString;
                 }
+                //    try
+                //    {
+                //        int valorDecimal = int.Parse(binarioString);
+                //        return valorDecimal;
+                //    }
+                //    catch (FormatException)
+                //    {
+                //        Console.WriteLine("Solo puedes ingresar dígitos binarios");
+                //    }
+                //    catch(OverflowException)
+                //    {
+                //        Console.WriteLine("El número ingresado es demasiado grande");
+                //    }
+                //}
             }
         }
     }

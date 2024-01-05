@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_C01___Conversor_binario_recargado
 {
-    public class Conversor
+    public static class Conversor
     {
         /// <summary>
         /// Convierte a un número en base 10 a su equivalente en base 2
@@ -35,9 +35,9 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         /// </summary>
         /// <param name="numeroEntero"></param>
         /// <returns>Entero en base 10</returns>
-        public static int ConvertirBinarioADecimal(int numeroEntero)
+        public static int ConvertirBinarioADecimal(string numeroString)
         {
-            string numeroString = numeroEntero.ToString();
+            //string numeroString = numeroEntero.ToString();
             int enteroConvertido = 0;
             int exponente = 0;
 

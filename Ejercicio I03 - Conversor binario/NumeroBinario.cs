@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_C01___Conversor_binario_recargado
 {
-    internal class NumeroBinario
+    public class NumeroBinario
     {
         private string _numero;
 
@@ -24,15 +24,31 @@ namespace Ejercicio_C01___Conversor_binario_recargado
         // Conversor implicito de NumeroBinario a string
         public static implicit operator string(NumeroBinario nb)
         {
-            return new string(nb.ToString());
+            return nb.Numero;
         }
 
 
-
+        // Sobrecarga de operador + y - entre NumeroBinario y NumeroDecimal
         public static string operator +(NumeroBinario nb, NumeroDecimal nd)
         {
+            int numDecimal = Conversor.ConvertirBinarioADecimal(nb.Numero) + (int)nd.Numero;
+            return Conversor.ConvertirDecimalABinario(numDecimal);
+        }
+        public static string operator -(NumeroBinario nb, NumeroDecimal nd)
+        {
+            int numDecimal = Math.Abs(Conversor.ConvertirBinarioADecimal(nb.Numero) - (int)nd.Numero);
+            return Conversor.ConvertirDecimalABinario(numDecimal);
+        }
 
-            return nb.Numero + Conversor.ConvertirDecimalABinario((int)nd.Numero);
+
+        // Sobrecarga de operador == y != entre NumeroBinario y NumeroDecimal
+        public static bool operator ==(NumeroBinario nb, NumeroDecimal nd)
+        {
+            return nb.Numero == Conversor.ConvertirDecimalABinario((int)nd.Numero);
+        }
+        public static bool operator !=(NumeroBinario nb, NumeroDecimal nd)
+        {
+            return !(nb == nd);
         }
     }
 }
